@@ -1,0 +1,17 @@
+services:
+  database:
+    image: postgres:18.7-bookworm
+    environment: {POSTGRES_DB: shockwave,POSTGRES_USER: shockwave,POSTGRES_PASSWORD: "${RESTORE_PASSWORD:?Missing restore password}"}
+    healthcheck:
+      test: ["CMD-SHELL","pg_isready -U shockwave -d shockwave"]
+      interval: 2s
+      timeout: 5s
+      retries: 30
+  files:
+    image: shockwave-app:local
+    command: ["node","-e","setInterval(()=>{},1000)"]
+    environment:
+      DATABASE_URL: postgresql://shockwave:${RESTORE_PASSWORD}@database:5432/shockwave
+    volumes: ["restored_documents:/app/storage/documents"]
+volumes:
+  restored_documents:

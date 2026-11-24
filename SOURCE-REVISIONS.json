@@ -1,0 +1,29 @@
+{
+  "preview-v34": {
+    "source": "Shockwave PMO Sites Git repository, main",
+    "release": 34,
+    "commit": "40832d6ffd9cd300d0ea8053a676a65c8a2d85a0",
+    "committed_at": "2026-11-24T10:16:43+07:00",
+    "files": 69,
+    "export_sanitization": [
+      "packages/shared/review.json: cleared bundled demo reviewer password verifier",
+      ".openai/hosting.json: replaced project identifier with a configuration placeholder",
+      "AGENTS.md: replaced internal deployment project identifier and changelog link with placeholders"
+    ],
+    "security_patches": [
+      "Upgrade Zod to 4.6.7 for GHSA-mrhx-c7xc-m3w5",
+      "Override ExcelJS UUID to 11.1.1 for GHSA-w5hq-g745-h8pq and build browser bundles from audited dependencies"
+    ]
+  },
+  "full-stack": {
+    "source": "PMO Software source snapshot",
+    "declared_package_version": "0.1.0",
+    "latest_source_file_modified_at": "2026-11-18T06:47:45.813Z",
+    "snapshot_sha256": "d5d81e58eb0b9a5b8afffb83e1e92cce1095aa76fcb1ede110e1362dd9e8af81",
+    "snapshot_hash_method": "SHA-256 of sorted <file SHA-256><two spaces><relative path><LF> lines, before export sanitization",
+    "files": 108,
+    "export_sanitization": [
+      "docs/LAN.md: replaced internal LAN address with RFC 5737 example address"
+    ]
+  }
+}

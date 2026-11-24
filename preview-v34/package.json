@@ -1,0 +1,37 @@
+{
+  "name": "shockwave-pmo-review",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "node scripts/build-browser.mjs"
+  },
+  "dependencies": {
+    "@fontsource-variable/bricolage-grotesque": "^5.2.0",
+    "@fontsource-variable/figtree": "^5.2.0",
+    "@simplewebauthn/browser": "^14.0.0",
+    "@simplewebauthn/server": "^14.1.0",
+    "docx": "^9.15.4",
+    "exceljs": "^4.4.0",
+    "html2canvas": "^1.4.1",
+    "jspdf": "^4.2.1",
+    "jszip": "^3.10.2",
+    "lucide-react": "^0.468.0",
+    "pdfjs-dist": "^4.10.38",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "zod": "^4.6.7"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-react": "^4.4.1",
+    "buffer": "^6.0.3",
+    "esbuild": "^0.25.0",
+    "esbuild-plugins-node-modules-polyfill": "^1.8.3",
+    "readable-stream": "^3.6.2",
+    "vite": "^6.3.5"
+  },
+  "overrides": {
+    "exceljs": {
+      "uuid": "11.1.1"
+    }
+  }
+}

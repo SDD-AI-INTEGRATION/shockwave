@@ -1,0 +1,18 @@
+ALTER TABLE users ADD COLUMN IF NOT EXISTS must_change_password boolean NOT NULL DEFAULT false;
+ALTER TABLE projects ADD COLUMN IF NOT EXISTS archived_at timestamptz;
+ALTER TABLE documents ADD COLUMN IF NOT EXISTS root_id uuid REFERENCES documents(id);
+ALTER TABLE documents ADD COLUMN IF NOT EXISTS version_number integer NOT NULL DEFAULT 1;
+ALTER TABLE documents ADD COLUMN IF NOT EXISTS size_bytes bigint NOT NULL DEFAULT 0;
+ALTER TABLE documents ADD COLUMN IF NOT EXISTS checksum text NOT NULL DEFAULT '';
+ALTER TABLE documents ADD COLUMN IF NOT EXISTS category text NOT NULL DEFAULT 'other';
+ALTER TABLE documents ADD COLUMN IF NOT EXISTS raw_text text NOT NULL DEFAULT '';
+ALTER TABLE documents ADD COLUMN IF NOT EXISTS verified_fields jsonb;
+ALTER TABLE documents ADD COLUMN IF NOT EXISTS verified_at timestamptz;
+ALTER TABLE documents ADD COLUMN IF NOT EXISTS revision integer NOT NULL DEFAULT 0;
+ALTER TABLE documents ADD COLUMN IF NOT EXISTS deleted_at timestamptz;
+ALTER TABLE documents ADD COLUMN IF NOT EXISTS lease_token uuid;
+ALTER TABLE documents ADD COLUMN IF NOT EXISTS search_vector tsvector GENERATED ALWAYS AS (to_tsvector('simple',coalesce(name,'')||' '||coalesce(raw_text,''))) STORED;
+CREATE INDEX IF NOT EXISTS documents_search ON documents USING gin(search_vector);
+CREATE INDEX IF NOT EXISTS documents_project ON documents(project_id,created_at DESC);
+CREATE INDEX IF NOT EXISTS documents_queue ON documents(status,created_at) WHERE deleted_at IS NULL;
+CREATE UNIQUE INDEX IF NOT EXISTS documents_versions ON documents((coalesce(root_id,id)),version_number);

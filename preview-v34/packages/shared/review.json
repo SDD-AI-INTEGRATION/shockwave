@@ -1,0 +1,573 @@
+{
+  "projects": [
+    {
+      "id": "P001",
+      "number": 1,
+      "verification": false,
+      "detail": {
+        "name": "Portal Layanan Aurora",
+        "customer": "Koperasi Cahaya Fiktif",
+        "pm": "Reviewer Demo",
+        "sales": "Tim Demo",
+        "period": "1 Sep 2026 s/d 30 Apr 2027",
+        "value": "2313 Jt",
+        "billing": "Bulanan",
+        "notes": "Data fiktif untuk review Shockwave PMO.",
+        "resourceCount": "2"
+      },
+      "latestText": "Prognosa Revenue 2026: Rp 1850 Jt\nRealisasi Revenue 2026: Rp 1120 Jt\nTim menyiapkan tinjauan tahap berikutnya.",
+      "priorText": "Catatan rapat contoh: ruang lingkup dan target telah disepakati."
+    },
+    {
+      "id": "P002",
+      "number": 2,
+      "verification": false,
+      "detail": {
+        "name": "Enhancement Inventaris Arunika",
+        "customer": "Niaga Pelangi Fiktif",
+        "pm": "Reviewer Demo",
+        "sales": "Tim Demo",
+        "period": "1 Sep 2026 s/d 31 Okt 2026",
+        "value": "1025 Jt",
+        "billing": "Per milestone",
+        "notes": "Data fiktif untuk review Shockwave PMO.",
+        "resourceCount": "3"
+      },
+      "latestText": "Prognosa Revenue 2026: Rp 820 Jt\nRealisasi Revenue 2026: Rp 790 Jt\nTim menyiapkan tinjauan tahap berikutnya.",
+      "priorText": "Catatan rapat contoh: ruang lingkup dan target telah disepakati."
+    },
+    {
+      "id": "P003",
+      "number": 3,
+      "verification": false,
+      "detail": {
+        "name": "Penyediaan Tenaga Quality Assurance Lentera",
+        "customer": "Dana Lentera Fiktif",
+        "pm": "Reviewer Demo",
+        "sales": "Tim Demo",
+        "period": "1 Sep 2026 s/d 30 Jun 2027",
+        "value": "1563 Jt",
+        "billing": "Bulanan",
+        "notes": "Data fiktif untuk review Shockwave PMO.",
+        "resourceCount": "4"
+      },
+      "latestText": "Prognosa Revenue 2026: Rp 1250 Jt\nRealisasi Revenue 2026: Rp 620 Jt\nTim menyiapkan tinjauan tahap berikutnya.",
+      "priorText": "Catatan rapat contoh: ruang lingkup dan target telah disepakati."
+    },
+    {
+      "id": "P004",
+      "number": 4,
+      "verification": false,
+      "detail": {
+        "name": "Pembaruan Infrastruktur Jaringan Purnama",
+        "customer": "Logistik Purnama Fiktif",
+        "pm": "Reviewer Demo",
+        "sales": "Tim Demo",
+        "period": "1 Sep 2026 s/d 31 Agt 2027",
+        "value": "3000 Jt",
+        "billing": "Per milestone",
+        "notes": "Data fiktif untuk review Shockwave PMO.",
+        "resourceCount": "5"
+      },
+      "latestText": "Prognosa Revenue 2026: Rp 2400 Jt\nRealisasi Revenue 2026: Rp 980 Jt\nTim menyiapkan tinjauan tahap berikutnya.",
+      "priorText": "Catatan rapat contoh: ruang lingkup dan target telah disepakati."
+    },
+    {
+      "id": "P005",
+      "number": 5,
+      "verification": false,
+      "detail": {
+        "name": "Integrasi Data Pelanggan Nirmala",
+        "customer": "Layanan Nirmala Fiktif",
+        "pm": "Reviewer Demo",
+        "sales": "Tim Demo",
+        "period": "1 Sep 2026 s/d 31 Mar 2027",
+        "value": "1900 Jt",
+        "billing": "Bulanan",
+        "notes": "Data fiktif untuk review Shockwave PMO.",
+        "resourceCount": "2"
+      },
+      "latestText": "Prognosa Revenue 2026: Rp 1520 Jt\nRealisasi Revenue 2026: Rp 910 Jt\nTim menyiapkan tinjauan tahap berikutnya.",
+      "priorText": "Catatan rapat contoh: ruang lingkup dan target telah disepakati."
+    },
+    {
+      "id": "P006",
+      "number": 6,
+      "verification": false,
+      "detail": {
+        "name": "Managed Service Data Center Samudra",
+        "customer": "Samudra Sarana Fiktif",
+        "pm": "Reviewer Demo",
+        "sales": "Tim Demo",
+        "period": "1 Sep 2026 s/d 30 Sep 2026",
+        "value": "3500 Jt",
+        "billing": "Per milestone",
+        "notes": "Data fiktif untuk review Shockwave PMO.",
+        "resourceCount": "3"
+      },
+      "latestText": "Prognosa Revenue 2026: Rp 2800 Jt\nRealisasi Revenue 2026: Rp 2620 Jt\nTim menyiapkan tinjauan tahap berikutnya.",
+      "priorText": "Catatan rapat contoh: ruang lingkup dan target telah disepakati."
+    },
+    {
+      "id": "P007",
+      "number": 7,
+      "verification": false,
+      "detail": {
+        "name": "Alih Daya Tenaga Administrasi Cakrawala",
+        "customer": "Cakrawala Prima Fiktif",
+        "pm": "Reviewer Demo",
+        "sales": "Tim Demo",
+        "period": "1 Sep 2026 s/d 31 Des 2026",
+        "value": "788 Jt",
+        "billing": "Bulanan",
+        "notes": "Data fiktif untuk review Shockwave PMO.",
+        "resourceCount": "4"
+      },
+      "latestText": "Prognosa Revenue 2026: Rp 630 Jt\nRealisasi Revenue 2026: Rp 408 Jt\nTim menyiapkan tinjauan tahap berikutnya.",
+      "priorText": "Catatan rapat contoh: ruang lingkup dan target telah disepakati."
+    },
+    {
+      "id": "P008",
+      "number": 8,
+      "verification": true,
+      "detail": {
+        "name": "Dashboard Akademik Kirana",
+        "customer": "Yayasan Kirana Fiktif",
+        "pm": "Reviewer Demo",
+        "sales": "Tim Demo",
+        "period": "1 Sep 2026 s/d 31 Mei 2027",
+        "value": "1375 Jt",
+        "billing": "Per milestone",
+        "notes": "Data fiktif untuk review Shockwave PMO.",
+        "resourceCount": "5"
+      },
+      "latestText": "Prognosa Revenue 2026: Rp 1100 Jt\nRealisasi Revenue 2026: Rp 350 Jt\nTim menyiapkan tinjauan tahap berikutnya.",
+      "priorText": "Catatan rapat contoh: ruang lingkup dan target telah disepakati."
+    }
+  ],
+  "meetings": [
+    {
+      "id": "M-20261116",
+      "date": "2026-11-16",
+      "title": "Tinjauan Mingguan Demo",
+      "moderator": "Reviewer Demo",
+      "status": "draft",
+      "previousId": "M-20261109",
+      "previousDate": "2026-11-09",
+      "notulis": "",
+      "participants": "",
+      "notes": "",
+      "version": 1,
+      "projects": [
+        {
+          "id": "P001",
+          "number": 1,
+          "detail": {
+            "name": "Portal Layanan Aurora",
+            "customer": "Koperasi Cahaya Fiktif",
+            "pm": "Reviewer Demo",
+            "sales": "Tim Demo",
+            "period": "1 Sep 2026 s/d 30 Apr 2027",
+            "value": "2313 Jt",
+            "billing": "Bulanan",
+            "notes": "Data fiktif untuk review Shockwave PMO.",
+            "resourceCount": "2"
+          },
+          "verification": false,
+          "previousText": "Prognosa Revenue 2026: Rp 1850 Jt\nRealisasi Revenue 2026: Rp 1120 Jt\nTim menyiapkan tinjauan tahap berikutnya.",
+          "review": {
+            "status": "updated",
+            "health": "On Track",
+            "summary": "Uji alur utama selesai. Tim menyiapkan uji penerimaan.",
+            "items": [],
+            "actions": []
+          }
+        },
+        {
+          "id": "P002",
+          "number": 2,
+          "detail": {
+            "name": "Enhancement Inventaris Arunika",
+            "customer": "Niaga Pelangi Fiktif",
+            "pm": "Reviewer Demo",
+            "sales": "Tim Demo",
+            "period": "1 Sep 2026 s/d 31 Okt 2026",
+            "value": "1025 Jt",
+            "billing": "Per milestone",
+            "notes": "Data fiktif untuk review Shockwave PMO.",
+            "resourceCount": "3"
+          },
+          "verification": false,
+          "previousText": "Prognosa Revenue 2026: Rp 820 Jt\nRealisasi Revenue 2026: Rp 790 Jt\nTim menyiapkan tinjauan tahap berikutnya.",
+          "review": {
+            "status": "none",
+            "health": "Belum dinilai",
+            "summary": "",
+            "items": [],
+            "actions": []
+          }
+        },
+        {
+          "id": "P003",
+          "number": 3,
+          "detail": {
+            "name": "Penyediaan Tenaga Quality Assurance Lentera",
+            "customer": "Dana Lentera Fiktif",
+            "pm": "Reviewer Demo",
+            "sales": "Tim Demo",
+            "period": "1 Sep 2026 s/d 30 Jun 2027",
+            "value": "1563 Jt",
+            "billing": "Bulanan",
+            "notes": "Data fiktif untuk review Shockwave PMO.",
+            "resourceCount": "4"
+          },
+          "verification": false,
+          "previousText": "Prognosa Revenue 2026: Rp 1250 Jt\nRealisasi Revenue 2026: Rp 620 Jt\nTim menyiapkan tinjauan tahap berikutnya.",
+          "review": {
+            "status": "pending",
+            "health": "Belum dinilai",
+            "summary": "",
+            "items": [],
+            "actions": []
+          }
+        },
+        {
+          "id": "P004",
+          "number": 4,
+          "detail": {
+            "name": "Pembaruan Infrastruktur Jaringan Purnama",
+            "customer": "Logistik Purnama Fiktif",
+            "pm": "Reviewer Demo",
+            "sales": "Tim Demo",
+            "period": "1 Sep 2026 s/d 31 Agt 2027",
+            "value": "3000 Jt",
+            "billing": "Per milestone",
+            "notes": "Data fiktif untuk review Shockwave PMO.",
+            "resourceCount": "5"
+          },
+          "verification": false,
+          "previousText": "Prognosa Revenue 2026: Rp 2400 Jt\nRealisasi Revenue 2026: Rp 980 Jt\nTim menyiapkan tinjauan tahap berikutnya.",
+          "review": {
+            "status": "pending",
+            "health": "Belum dinilai",
+            "summary": "",
+            "items": [],
+            "actions": []
+          }
+        },
+        {
+          "id": "P005",
+          "number": 5,
+          "detail": {
+            "name": "Integrasi Data Pelanggan Nirmala",
+            "customer": "Layanan Nirmala Fiktif",
+            "pm": "Reviewer Demo",
+            "sales": "Tim Demo",
+            "period": "1 Sep 2026 s/d 31 Mar 2027",
+            "value": "1900 Jt",
+            "billing": "Bulanan",
+            "notes": "Data fiktif untuk review Shockwave PMO.",
+            "resourceCount": "2"
+          },
+          "verification": false,
+          "previousText": "Prognosa Revenue 2026: Rp 1520 Jt\nRealisasi Revenue 2026: Rp 910 Jt\nTim menyiapkan tinjauan tahap berikutnya.",
+          "review": {
+            "status": "pending",
+            "health": "Belum dinilai",
+            "summary": "",
+            "items": [],
+            "actions": []
+          }
+        },
+        {
+          "id": "P006",
+          "number": 6,
+          "detail": {
+            "name": "Managed Service Data Center Samudra",
+            "customer": "Samudra Sarana Fiktif",
+            "pm": "Reviewer Demo",
+            "sales": "Tim Demo",
+            "period": "1 Sep 2026 s/d 30 Sep 2026",
+            "value": "3500 Jt",
+            "billing": "Per milestone",
+            "notes": "Data fiktif untuk review Shockwave PMO.",
+            "resourceCount": "3"
+          },
+          "verification": false,
+          "previousText": "Prognosa Revenue 2026: Rp 2800 Jt\nRealisasi Revenue 2026: Rp 2620 Jt\nTim menyiapkan tinjauan tahap berikutnya.",
+          "review": {
+            "status": "pending",
+            "health": "Belum dinilai",
+            "summary": "",
+            "items": [],
+            "actions": []
+          }
+        },
+        {
+          "id": "P007",
+          "number": 7,
+          "detail": {
+            "name": "Alih Daya Tenaga Administrasi Cakrawala",
+            "customer": "Cakrawala Prima Fiktif",
+            "pm": "Reviewer Demo",
+            "sales": "Tim Demo",
+            "period": "1 Sep 2026 s/d 31 Des 2026",
+            "value": "788 Jt",
+            "billing": "Bulanan",
+            "notes": "Data fiktif untuk review Shockwave PMO.",
+            "resourceCount": "4"
+          },
+          "verification": false,
+          "previousText": "Prognosa Revenue 2026: Rp 630 Jt\nRealisasi Revenue 2026: Rp 408 Jt\nTim menyiapkan tinjauan tahap berikutnya.",
+          "review": {
+            "status": "pending",
+            "health": "Belum dinilai",
+            "summary": "",
+            "items": [],
+            "actions": []
+          }
+        },
+        {
+          "id": "P008",
+          "number": 8,
+          "detail": {
+            "name": "Dashboard Akademik Kirana",
+            "customer": "Yayasan Kirana Fiktif",
+            "pm": "Reviewer Demo",
+            "sales": "Tim Demo",
+            "period": "1 Sep 2026 s/d 31 Mei 2027",
+            "value": "1375 Jt",
+            "billing": "Per milestone",
+            "notes": "Data fiktif untuk review Shockwave PMO.",
+            "resourceCount": "5"
+          },
+          "verification": true,
+          "previousText": "Prognosa Revenue 2026: Rp 1100 Jt\nRealisasi Revenue 2026: Rp 350 Jt\nTim menyiapkan tinjauan tahap berikutnya.",
+          "review": {
+            "status": "pending",
+            "health": "Belum dinilai",
+            "summary": "",
+            "items": [],
+            "actions": []
+          }
+        }
+      ]
+    },
+    {
+      "id": "M-20261109",
+      "date": "2026-11-09",
+      "title": "Rapat Korporat Contoh",
+      "moderator": "Reviewer Demo",
+      "status": "final",
+      "previousId": null,
+      "previousDate": "2026-11-02",
+      "notulis": "",
+      "participants": "Tim PMO Demo",
+      "notes": "",
+      "version": 1,
+      "projects": [
+        {
+          "id": "P001",
+          "number": 1,
+          "detail": {
+            "name": "Portal Layanan Aurora",
+            "customer": "Koperasi Cahaya Fiktif",
+            "pm": "Reviewer Demo",
+            "sales": "Tim Demo",
+            "period": "1 Sep 2026 s/d 30 Apr 2027",
+            "value": "2313 Jt",
+            "billing": "Bulanan",
+            "notes": "Data fiktif untuk review Shockwave PMO.",
+            "resourceCount": "2"
+          },
+          "verification": false,
+          "previousText": "Catatan rapat contoh: ruang lingkup dan target telah disepakati.",
+          "review": {
+            "status": "source",
+            "health": "Belum dinilai",
+            "summary": "",
+            "items": [],
+            "actions": [],
+            "sourceText": "Prognosa Revenue 2026: Rp 1850 Jt\nRealisasi Revenue 2026: Rp 1120 Jt\nTim menyiapkan tinjauan tahap berikutnya."
+          }
+        },
+        {
+          "id": "P002",
+          "number": 2,
+          "detail": {
+            "name": "Enhancement Inventaris Arunika",
+            "customer": "Niaga Pelangi Fiktif",
+            "pm": "Reviewer Demo",
+            "sales": "Tim Demo",
+            "period": "1 Sep 2026 s/d 31 Okt 2026",
+            "value": "1025 Jt",
+            "billing": "Per milestone",
+            "notes": "Data fiktif untuk review Shockwave PMO.",
+            "resourceCount": "3"
+          },
+          "verification": false,
+          "previousText": "Catatan rapat contoh: ruang lingkup dan target telah disepakati.",
+          "review": {
+            "status": "source",
+            "health": "Belum dinilai",
+            "summary": "",
+            "items": [],
+            "actions": [],
+            "sourceText": "Prognosa Revenue 2026: Rp 820 Jt\nRealisasi Revenue 2026: Rp 790 Jt\nTim menyiapkan tinjauan tahap berikutnya."
+          }
+        },
+        {
+          "id": "P003",
+          "number": 3,
+          "detail": {
+            "name": "Penyediaan Tenaga Quality Assurance Lentera",
+            "customer": "Dana Lentera Fiktif",
+            "pm": "Reviewer Demo",
+            "sales": "Tim Demo",
+            "period": "1 Sep 2026 s/d 30 Jun 2027",
+            "value": "1563 Jt",
+            "billing": "Bulanan",
+            "notes": "Data fiktif untuk review Shockwave PMO.",
+            "resourceCount": "4"
+          },
+          "verification": false,
+          "previousText": "Catatan rapat contoh: ruang lingkup dan target telah disepakati.",
+          "review": {
+            "status": "source",
+            "health": "Belum dinilai",
+            "summary": "",
+            "items": [],
+            "actions": [],
+            "sourceText": "Prognosa Revenue 2026: Rp 1250 Jt\nRealisasi Revenue 2026: Rp 620 Jt\nTim menyiapkan tinjauan tahap berikutnya."
+          }
+        },
+        {
+          "id": "P004",
+          "number": 4,
+          "detail": {
+            "name": "Pembaruan Infrastruktur Jaringan Purnama",
+            "customer": "Logistik Purnama Fiktif",
+            "pm": "Reviewer Demo",
+            "sales": "Tim Demo",
+            "period": "1 Sep 2026 s/d 31 Agt 2027",
+            "value": "3000 Jt",
+            "billing": "Per milestone",
+            "notes": "Data fiktif untuk review Shockwave PMO.",
+            "resourceCount": "5"
+          },
+          "verification": false,
+          "previousText": "Catatan rapat contoh: ruang lingkup dan target telah disepakati.",
+          "review": {
+            "status": "source",
+            "health": "Belum dinilai",
+            "summary": "",
+            "items": [],
+            "actions": [],
+            "sourceText": "Prognosa Revenue 2026: Rp 2400 Jt\nRealisasi Revenue 2026: Rp 980 Jt\nTim menyiapkan tinjauan tahap berikutnya."
+          }
+        },
+        {
+          "id": "P005",
+          "number": 5,
+          "detail": {
+            "name": "Integrasi Data Pelanggan Nirmala",
+            "customer": "Layanan Nirmala Fiktif",
+            "pm": "Reviewer Demo",
+            "sales": "Tim Demo",
+            "period": "1 Sep 2026 s/d 31 Mar 2027",
+            "value": "1900 Jt",
+            "billing": "Bulanan",
+            "notes": "Data fiktif untuk review Shockwave PMO.",
+            "resourceCount": "2"
+          },
+          "verification": false,
+          "previousText": "Catatan rapat contoh: ruang lingkup dan target telah disepakati.",
+          "review": {
+            "status": "source",
+            "health": "Belum dinilai",
+            "summary": "",
+            "items": [],
+            "actions": [],
+            "sourceText": "Prognosa Revenue 2026: Rp 1520 Jt\nRealisasi Revenue 2026: Rp 910 Jt\nTim menyiapkan tinjauan tahap berikutnya."
+          }
+        },
+        {
+          "id": "P006",
+          "number": 6,
+          "detail": {
+            "name": "Managed Service Data Center Samudra",
+            "customer": "Samudra Sarana Fiktif",
+            "pm": "Reviewer Demo",
+            "sales": "Tim Demo",
+            "period": "1 Sep 2026 s/d 30 Sep 2026",
+            "value": "3500 Jt",
+            "billing": "Per milestone",
+            "notes": "Data fiktif untuk review Shockwave PMO.",
+            "resourceCount": "3"
+          },
+          "verification": false,
+          "previousText": "Catatan rapat contoh: ruang lingkup dan target telah disepakati.",
+          "review": {
+            "status": "source",
+            "health": "Belum dinilai",
+            "summary": "",
+            "items": [],
+            "actions": [],
+            "sourceText": "Prognosa Revenue 2026: Rp 2800 Jt\nRealisasi Revenue 2026: Rp 2620 Jt\nTim menyiapkan tinjauan tahap berikutnya."
+          }
+        },
+        {
+          "id": "P007",
+          "number": 7,
+          "detail": {
+            "name": "Alih Daya Tenaga Administrasi Cakrawala",
+            "customer": "Cakrawala Prima Fiktif",
+            "pm": "Reviewer Demo",
+            "sales": "Tim Demo",
+            "period": "1 Sep 2026 s/d 31 Des 2026",
+            "value": "788 Jt",
+            "billing": "Bulanan",
+            "notes": "Data fiktif untuk review Shockwave PMO.",
+            "resourceCount": "4"
+          },
+          "verification": false,
+          "previousText": "Catatan rapat contoh: ruang lingkup dan target telah disepakati.",
+          "review": {
+            "status": "source",
+            "health": "Belum dinilai",
+            "summary": "",
+            "items": [],
+            "actions": [],
+            "sourceText": "Prognosa Revenue 2026: Rp 630 Jt\nRealisasi Revenue 2026: Rp 408 Jt\nTim menyiapkan tinjauan tahap berikutnya."
+          }
+        },
+        {
+          "id": "P008",
+          "number": 8,
+          "detail": {
+            "name": "Dashboard Akademik Kirana",
+            "customer": "Yayasan Kirana Fiktif",
+            "pm": "Reviewer Demo",
+            "sales": "Tim Demo",
+            "period": "1 Sep 2026 s/d 31 Mei 2027",
+            "value": "1375 Jt",
+            "billing": "Per milestone",
+            "notes": "Data fiktif untuk review Shockwave PMO.",
+            "resourceCount": "5"
+          },
+          "verification": true,
+          "previousText": "Catatan rapat contoh: ruang lingkup dan target telah disepakati.",
+          "review": {
+            "status": "source",
+            "health": "Belum dinilai",
+            "summary": "",
+            "items": [],
+            "actions": [],
+            "sourceText": "Prognosa Revenue 2026: Rp 1100 Jt\nRealisasi Revenue 2026: Rp 350 Jt\nTim menyiapkan tinjauan tahap berikutnya."
+          }
+        }
+      ]
+    }
+  ],
+  "passwordDigest": ""
+}

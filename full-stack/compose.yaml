@@ -1,0 +1,37 @@
+services:
+  database:
+    image: postgres:18.7-bookworm
+    environment:
+      POSTGRES_DB: shockwave
+      POSTGRES_USER: shockwave
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:?Isi POSTGRES_PASSWORD di .env}
+    ports: ["127.0.0.1:${DATABASE_PORT:-55432}:5432"]
+    volumes:
+      - pgdata:/var/lib/postgresql
+      - ./database/001-core.sql:/docker-entrypoint-initdb.d/001-core.sql:ro
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U shockwave -d shockwave"]
+      interval: 5s
+      timeout: 5s
+      retries: 12
+    restart: unless-stopped
+  ocr:
+    profiles: ["ocr"]
+    build: ./ocr
+    environment:
+      DATABASE_URL: postgresql://shockwave:${POSTGRES_PASSWORD}@database:5432/shockwave
+      STORAGE_DIR: /data/documents
+      OCR_LANG: id
+    volumes:
+      - ./storage/documents:/data/documents:ro
+      - ocrmodels:/home/worker/.paddlex
+    depends_on:
+      database: { condition: service_healthy }
+    restart: unless-stopped
+    security_opt: ["no-new-privileges:true"]
+    cap_drop: ["ALL"]
+    mem_limit: 4g
+    cpus: 2
+volumes:
+  pgdata:
+  ocrmodels:

@@ -1,0 +1,78 @@
+name: shockwave-local
+services:
+  database:
+    image: postgres:18.7-bookworm
+    environment:
+      POSTGRES_DB: shockwave
+      POSTGRES_USER: shockwave
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:?Isi POSTGRES_PASSWORD}
+    volumes: ["production_database:/var/lib/postgresql"]
+    healthcheck:
+      test: ["CMD-SHELL","pg_isready -U shockwave -d shockwave"]
+      interval: 5s
+      timeout: 5s
+      retries: 20
+    restart: unless-stopped
+  backend:
+    image: shockwave-app:local
+    build: {context: .,dockerfile: deploy/Dockerfile}
+    command: ["npm","run","start","-w","backend"]
+    environment:
+      DATABASE_URL: postgresql://shockwave:${POSTGRES_PASSWORD}@database:5432/shockwave
+      APP_ORIGIN: ${APP_ORIGIN:-http://localhost:${WEB_PORT:-8080}}
+      APP_ORIGINS: ${APP_ORIGINS:-}
+      NODE_ENV: production
+      COOKIE_SECURE: "false"
+      LOCAL_HTTP: "true"
+      LAN_HTTP: ${LAN_HTTP:-false}
+      STORAGE_DIR: /app/storage/documents
+      LOG_REQUESTS: "true"
+      EARLY_WARNING_INTERVAL_MINUTES: ${EARLY_WARNING_INTERVAL_MINUTES:-60}
+      TEAMS_WEBHOOK_URL: ${TEAMS_WEBHOOK_URL:-}
+      OPENAI_API_KEY: ${OPENAI_API_KEY:-}
+      OPENAI_MODEL: ${OPENAI_MODEL:-gpt-6-luna}
+      ASSISTANT_AI: ${ASSISTANT_AI:-on}
+    volumes: ["production_documents:/app/storage/documents"]
+    depends_on: {database: {condition: service_healthy}}
+    healthcheck:
+      test: ["CMD","node","-e","fetch('http://127.0.0.1:4000/api/health').then(r=>process.exit(r.ok?0:1)).catch(()=>process.exit(1))"]
+      interval: 10s
+      timeout: 5s
+      retries: 20
+    security_opt: ["no-new-privileges:true"]
+    cap_drop: ["ALL"]
+    restart: unless-stopped
+  frontend:
+    image: shockwave-app:local
+    pull_policy: never
+    command: ["npm","run","start","-w","frontend"]
+    ports: ["${WEB_BIND:-127.0.0.1}:${WEB_PORT:-8080}:3000"]
+    environment: {API_ORIGIN: "http://backend:4000",NODE_ENV: production}
+    depends_on: {backend: {condition: service_healthy}}
+    healthcheck:
+      test: ["CMD","node","-e","fetch('http://127.0.0.1:3000').then(r=>process.exit(r.ok?0:1)).catch(()=>process.exit(1))"]
+      interval: 10s
+      timeout: 5s
+      retries: 20
+    security_opt: ["no-new-privileges:true"]
+    cap_drop: ["ALL"]
+    restart: unless-stopped
+  ocr:
+    image: shockwave-ocr:local
+    build: ./ocr
+    environment:
+      DATABASE_URL: postgresql://shockwave:${POSTGRES_PASSWORD}@database:5432/shockwave
+      STORAGE_DIR: /data/documents
+      OCR_LANG: id
+    volumes: ["production_documents:/data/documents:ro","production_models:/home/worker/.paddlex","production_paddle:/home/worker/.paddleocr"]
+    depends_on: {backend: {condition: service_healthy}}
+    mem_limit: 4g
+    cpus: 2
+    security_opt: ["no-new-privileges:true"]
+    cap_drop: ["ALL"]
+    restart: unless-stopped
+volumes:
+  production_database:
+  production_documents:
+  production_models:
+  production_paddle:

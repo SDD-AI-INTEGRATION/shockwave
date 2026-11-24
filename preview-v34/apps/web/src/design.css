@@ -1,0 +1,43 @@
+@import '@fontsource-variable/figtree';
+@import '@fontsource-variable/bricolage-grotesque';
+
+:root {
+  --font-body:'Figtree Variable',sans-serif;
+  --heading:'Bricolage Grotesque Variable',sans-serif;
+  --type-meta:.75rem;
+  --type-ui:.875rem;
+  --type-body:1rem;
+  --type-section:1.375rem;
+  --type-title:2rem;
+  --space-1:4px;
+  --space-2:8px;
+  --space-3:12px;
+  --space-4:16px;
+  --space-6:24px;
+  --brand:#1e31ae;
+  --brand-deep:#151e80;
+  --brand-medium:#214db0;
+  --brand-highlight:#516dc4;
+  --action:var(--brand);
+  --on-action:#fff;
+  --action-hover:var(--brand-deep);
+
+  --ring:#244db4;
+  --ink:#0e1b4d;--text:#1d2b50;--muted:#61708b;--faint:#596982;
+  --canvas:#f6f7fb;--panel:#fff;--soft:#f8f9fc;--line:#e3e6ef;--blue:#1f4fd8;
+  --accent:#6b4ce6;--active:#ecefff;--meter:#e9ecf4;--focus:var(--brand);--field:#fff;
+  --green:#14744d;--green-bg:#e6f6ed;--amber:#925412;--amber-bg:#fff2dc;--red:#a42635;--red-bg:#fce9ec;
+}
+:root[data-theme=dark] {
+  color-scheme:dark;--ring:#b9ccff;color:#edf0fd;background:#111528;--ink:#edf0fd;--text:#d8dff4;--muted:#a5b1ce;--faint:#9daaca;
+  --canvas:#111528;--panel:#1a2036;--soft:#202740;--line:#343d57;--blue:#8aa8ff;--accent:#ad98ff;--active:#26315b;--focus:#a9b9ff;--action:#a9b9ff;--on-action:#10183c;--action-hover:#c0cbff;
+  --meter:#343d57;--field:#1c223a;--green:#9de3b9;--green-bg:#233e38;--amber:#ffd086;--amber-bg:#493725;--red:#ffb0b9;--red-bg:#512a36;
+}
+:root[data-accent=violet]{--focus:#6b4ce6;--active:#eeebfc}
+:root[data-theme=dark][data-accent=violet]{--active:#30264e}
+:root[data-accent=teal]{--focus:#138e82;--active:#e1f5f2}
+:root[data-accent=green]{--focus:#16915f;--active:#e5f5eb}
+:root[data-accent=orange]{--focus:#be6218;--active:#fff0df}
+:root[data-accent=red]{--focus:#bf4444;--active:#fcecee}
+:root[data-accent=graphite]{--focus:#545e78;--active:#eceef4}
+:root[data-theme=dark][data-accent]:not([data-accent=violet]):not([data-accent=shockwave]){--active:#2b344d}
