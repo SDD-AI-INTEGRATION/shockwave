@@ -1,6 +1,7 @@
 47991074c59f8e65852388f3af49fe2024b7a93beb6bbd0681f85d088f429cfe  ./.github/workflows/codeql.yml
-45bd819580510534b3e7af0d8f5dfe79cc6d3f9b7df2e601adf67b98068988b7  ./README.md
+74fe4de5ee98a615fc3b6c93986bad8d49ca932d27dbb98209600672c2af3853  ./README.md
 c6f4b108f06f5646b94d420aab9700a63535b0e31886cb92beb2727144cfcd90  ./SOURCE-REVISIONS.json
+2ff34a799c3285e502c23b964d6b8f459aafa7ca437785395fd6e4ee704336af  ./docs/assets/shockwave-1x1-dark.png
 c110b1779f65241466409d1095521242ce4abffee2b13a408dda972424b4ef3a  ./full-stack/.dockerignore
 aa0f4a6feba0bf8712178507e499d5e4033fa6091de12b2ca9f11d3a288a216b  ./full-stack/.env.example
 0cae036a2e5ab6aaa1164485ac65b7419b2ad410007992d698b553d6eac52760  ./full-stack/.gitignore

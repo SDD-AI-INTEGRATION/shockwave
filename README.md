@@ -1,53 +1,97 @@
-# Shockwave PMO
+<p align="center">
+  <img src="docs/assets/shockwave-1x1-dark.png" alt="Logo Shockwave dengan simbol gelombang ungu pada latar gelap" width="280">
+</p>
 
-Repositori ini berisi dua sumber Shockwave PMO yang bisa dijalankan secara terpisah.
+<h1 align="center">Shockwave PMO</h1>
 
-| Folder | Revisi | Isi |
+<p align="center">
+  Platform Project Management Office PT Swadharma Duta Data untuk mengelola portofolio proyek, progres mingguan, dokumen, dan tindak lanjut.
+</p>
+
+<p align="center">
+  <a href="#mulai-cepat">Mulai cepat</a> ·
+  <a href="#isi-repositori">Isi repositori</a> ·
+  <a href="#dokumentasi">Dokumentasi</a>
+</p>
+
+## Yang bisa dikelola
+
+- **Portofolio proyek** — master proyek, pilar, progres, serta impor dan ekspor Excel.
+- **Operasional PMO** — WBS, linimasa, laporan mingguan, dan Log Book pada preview.
+- **Rapat dan dokumen** — Rapat Korporat, Penunjukan PM, Daftar Risiko, Notulen, serta templat BAST pada preview.
+- **Tata kelola full-stack** — persetujuan, tindak lanjut, termin, pengelolaan dokumen dengan OCR, dan asisten PMO dengan integrasi OpenAI opsional.
+
+## Isi repositori
+
+| Paket | Digunakan untuk | Stack |
 | --- | --- | --- |
-| [full-stack](full-stack/) | Paket 0.1.0, snapshot 18 November 2026 | Frontend Next.js, backend NestJS, empat migrasi PostgreSQL, adaptor OpenAI, OCR, logo, konfigurasi contoh, Docker, dan panduan operasional |
-| [preview-v61](preview-v61/) | Sites v61, commit `dc66694ca389ea70e9557ca647eb3045b16631b0` | Frontend React, API service worker, penyimpanan IndexedDB, fitur asisten preview, aset, dan logo |
+| [**Full-stack 0.1.0**](full-stack/) | Menjalankan aplikasi dengan API, database persisten, dan worker OCR. | Next.js, NestJS, PostgreSQL, Python, Docker Compose |
+| [**Preview v61**](preview-v61/) | Meninjau UI/UX dan alur kerja dengan data dummy. Sesi dan data tersimpan di browser per origin. | React, Vite, Service Worker, IndexedDB |
 
-Detail revisi dan sanitasi tercatat di [SOURCE-REVISIONS.json](SOURCE-REVISIONS.json). Versi full-stack berasal dari snapshot folder tanpa riwayat Git yang tersedia. Hash snapshot mengidentifikasi sumber tersebut.
+Preview menggunakan input manual dan impor Excel untuk proyek. Konektor SIMPRO aktif masih memerlukan integrasi.
 
-Ekspor ini menerapkan perbaikan keamanan di atas v61. Preview memakai Zod 4.6.7 dan membangun ulang bundel ExcelJS dengan UUID 11.1.1. Jalankan `npm run build` untuk membuat bundel browser dari dependency lockfile.
+## Mulai cepat
 
-Repositori ini belum memuat konektor SIMPRO aktif. Full-stack mendokumentasikan kebutuhan konektor eksternal. Preview v61 menggunakan input dan impor data proyek setelah sinkronisasi simulasi dihapus.
+### Full-stack dengan Docker
 
-## Menjalankan full-stack
+Untuk instalasi pertama di Windows, jalankan PowerShell 7 dengan Docker Desktop aktif.
 
-Ikuti [README full-stack](full-stack/README.md) untuk Docker, bootstrap admin, dan mode pengembangan dengan Node 26. Konfigurasi contoh tersedia di [root](full-stack/.env.example), [backend](full-stack/backend/.env.example), dan [deployment](full-stack/deploy/production.env.example). Buat nilai rahasia di lingkungan masing-masing.
-
-- [Deployment, backup, dan restore](full-stack/docs/OPERATIONS.md)
-- [Konfigurasi asisten OpenAI](full-stack/docs/OPENAI.md)
-- [Migrasi PostgreSQL](full-stack/database/)
-
-## Menjalankan preview v61
-
-Preview memakai akun demo `reviewer@shockwave.test`. Tetapkan password lokal baru sebelum build karena verifier bawaan dikosongkan di ekspor ini. Dari Bash dan dengan Node.js 24 atau lebih baru, jalankan berikut setelah mengekstrak ZIP.
-
-```bash
-cd preview-v61
-read -r -s -p 'Password demo baru: ' preview_password
-printf '\n'
-printf '%s' "$preview_password" | node --input-type=module -e '
-  import { createHash } from "node:crypto";
-  import { readFileSync, writeFileSync } from "node:fs";
-  const password = readFileSync(0, "utf8");
-  if (password.length < 12) throw new Error("Gunakan minimal 12 karakter.");
-  const path = "packages/shared/review.json";
-  const review = JSON.parse(readFileSync(path, "utf8"));
-  review.passwordDigest = createHash("sha256")
-    .update("shockwave-review:v1:" + password)
-    .digest("hex");
-  writeFileSync(path, JSON.stringify(review, null, 2) + "\n");
-'
-unset preview_password
-
-npm ci
-npm run build
-python3 -m http.server 4173 --bind 127.0.0.1 --directory dist
+```powershell
+cd full-stack
+.\scripts\start-production.ps1 -CreateAdmin
 ```
 
-Buka `http://localhost:4173`. Gunakan origin baru untuk pengujian bersih karena preview menyimpan sesi dan data di IndexedDB per origin. Untuk deployment preview, sajikan isi `dist/` dari root origin HTTPS, termasuk `review-api.js` dan `fase-1/operations.html`. Isi `YOUR_SITES_PROJECT_ID` di [konfigurasi Sites](preview-v61/.openai/hosting.json) bila menggunakan Sites. Simpan akses preview pada audiens peninjau dan gunakan data dummy.
+Buka [http://localhost:8080](http://localhost:8080). Pada penggunaan berikutnya, jalankan launcher tanpa `-CreateAdmin`. Panduan pengembangan dengan Node.js 26 ada di [README full-stack](full-stack/README.md). Untuk konfigurasi manual, gunakan templat [root](full-stack/.env.example), [backend](full-stack/backend/.env.example), dan [deployment](full-stack/deploy/production.env.example) sebagai acuan.
 
-[Dokumentasi autentikasi preview](preview-v61/docs/login-preview.md) menjelaskan dukungan email, Google Sign-In, dan passkey.
+### Preview v61 di browser
+
+Gunakan Bash, Node.js 24 atau lebih baru, dan Python 3. Akun demo memakai email `reviewer@shockwave.test`. Siapkan kata sandi lokal sebelum build.
+
+<details>
+<summary>Siapkan kata sandi demo dan jalankan preview</summary>
+
+```bash
+(
+  cd preview-v61 || exit 1
+  read -r -s -p 'Kata sandi demo baru (minimal 12 karakter): ' preview_password
+  printf '\n'
+  printf '%s' "$preview_password" | node --input-type=module -e '
+    import { createHash } from "node:crypto";
+    import { readFileSync, writeFileSync } from "node:fs";
+
+    const password = readFileSync(0, "utf8");
+    if (password.length < 12) throw new Error("Gunakan minimal 12 karakter.");
+
+    const path = "packages/shared/review.json";
+    const review = JSON.parse(readFileSync(path, "utf8"));
+    review.passwordDigest = createHash("sha256")
+      .update("shockwave-review:v1:" + password)
+      .digest("hex");
+    writeFileSync(path, JSON.stringify(review, null, 2) + "\n");
+  ' || exit 1
+  unset preview_password
+
+  npm ci && npm run build &&
+    python3 -m http.server 4173 --bind 127.0.0.1 --directory dist
+)
+```
+
+Buka [http://localhost:4173](http://localhost:4173) dan masuk dengan akun demo. Gunakan data dummy dan simpan perubahan kata sandi hanya pada salinan lokal. Untuk pengujian dengan state bersih, gunakan origin baru.
+
+Untuk hosting, sajikan isi `dist/` dari root origin HTTPS, termasuk `review-api.js` dan `fase-1/operations.html`. Isi `YOUR_SITES_PROJECT_ID` di [konfigurasi Sites](preview-v61/.openai/hosting.json) jika memakai Sites, dan batasi akses ke audiens peninjau.
+
+</details>
+
+## Dokumentasi
+
+| Topik | Panduan |
+| --- | --- |
+| Deployment, backup, dan restore | [Operasi full-stack](full-stack/docs/OPERATIONS.md) |
+| Asisten PMO | [Konfigurasi OpenAI](full-stack/docs/OPENAI.md) |
+| Basis data | [Migrasi PostgreSQL](full-stack/database/) |
+| Review UI dan akses | [Sistem visual](preview-v61/docs/visual-system.md) · [Autentikasi preview](preview-v61/docs/login-preview.md) |
+| Impor Proyek | [Templat dan validasi Excel](preview-v61/docs/project-module.md) |
+
+## Revisi sumber
+
+Snapshot full-stack berasal dari 18 November 2026. Preview mengacu pada Sites v61 (`dc66694`) dan menyertakan pembaruan Zod 4.6.7 serta bundel ExcelJS dengan UUID 11.1.1. Revisi lengkap, hash snapshot, dan catatan sanitasi tersedia di [SOURCE-REVISIONS.json](SOURCE-REVISIONS.json).
