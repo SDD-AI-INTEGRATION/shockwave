@@ -1,0 +1,149 @@
+@import '@fontsource-variable/figtree';
+@import '@fontsource-variable/bricolage-grotesque';
+
+:root {
+  --font-body:'Figtree Variable',sans-serif;
+  --heading:'Bricolage Grotesque Variable',sans-serif;
+  --type-meta:.75rem;
+  --type-ui:.875rem;
+  --type-body:1rem;
+  --type-section:1.125rem;
+  --type-title:1.75rem;
+  --space-1:4px;
+  --space-2:8px;
+  --space-3:12px;
+  --space-4:16px;
+  --space-6:24px;
+  --field-height:40px;
+  --control-radius:7px;
+  --popover-radius:8px;
+  --button-height:38px;
+  --select-chevron:url('data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24"%3E%3Cpath d="m5 9 7 7 7-7" fill="none" stroke="%23717d94" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/%3E%3C/svg%3E');
+  --control-weight:550;
+  --placeholder-weight:350;
+  --placeholder-color:#65728a;
+  --control-border:var(--line);
+  --control-hover:color-mix(in srgb,var(--focus) 55%,var(--line));
+  --control-disabled-opacity:.55;
+  --control-error:var(--red);
+  --focus-width:2px;
+  --focus-offset:2px;
+  --control-focus-color:var(--focus);
+  --control-focus-shadow:0 0 0 2px color-mix(in srgb,var(--control-focus-color) 18%,transparent);
+  --elevation-popover:0 8px 24px #10205226;
+  --elevation-toast:0 12px 30px #0e1b4d1f;
+  --motion-press:100ms;
+  --motion-hover:150ms;
+  --motion-dropdown:180ms;
+  --motion-tab:200ms;
+  --motion-dialog:220ms;
+  --motion-page:220ms;
+  --motion-edit:240ms;
+  --motion-sidebar:260ms;
+  --motion-drawer:280ms;
+  --motion-count-up:650ms;
+  --motion-login-gradient:15s;
+  --motion-assistant-gradient:5s;
+  --motion-assistant-spark:3.2s;
+  --motion-assistant-spark-delay:220ms;
+  --motion-chat-send:340ms;
+  --motion-chat-reply:220ms;
+  --motion-enter:cubic-bezier(.2,.7,.25,1);
+  --motion-ui:cubic-bezier(.25,.1,.25,1);
+  --motion-spin:850ms;
+  --format-word:var(--blue);
+  --format-excel:var(--green);
+  --format-pdf:var(--red);
+  --pillar-infrastructure:#138b82;
+  --pillar-service:#8054e9;
+  --pillar-software:#3156e4;
+  --brand:#2437b8;
+  --brand-navy:#18265c;
+  --brand-deep:#151e80;
+  --brand-medium:#214db0;
+  --brand-highlight:#516dc4;
+  --action:var(--brand);
+  --on-action:#fff;
+  --action-hover:var(--brand-deep);
+
+  --ring:#244db4;
+  --ink:#0e1b4d;--text:#1d2b50;--muted:#61708b;--faint:#596982;
+  --canvas:#f6f7fb;--panel:#fff;--soft:#f8f9fc;--line:#e3e6ef;--blue:#1f4fd8;
+  --accent:#6b4ce6;--active:#ebeefc;--meter:#e9ecf4;--focus:var(--brand);--field:#fff;
+  --green:#167552;--green-bg:#e6f6ed;--amber:#925412;--amber-bg:#fff2dc;--red:#b42f39;--red-bg:#fce9ec;
+}
+:root[data-theme=dark] {
+  color-scheme:dark;--ring:#b9ccff;color:#edf0fd;background:#111528;--ink:#edf0fd;--text:#d8dff4;--muted:#a5b1ce;--faint:#9daaca;
+  --placeholder-color:#99a7c3;
+  --canvas:#111528;--panel:#1a2036;--soft:#202740;--line:#343d57;--blue:#8aa8ff;--accent:#ad98ff;--active:#26315b;--focus:#a9b9ff;--action:#a9b9ff;--on-action:#10183c;--action-hover:#c0cbff;
+  --meter:#343d57;--field:#1c223a;--green:#9de3b9;--green-bg:#233e38;--amber:#ffd086;--amber-bg:#493725;--red:#ffb0b9;--red-bg:#512a36;
+}
+:root[data-accent=violet]{--focus:#6b4ce6;--active:#eeebfc}
+:root[data-theme=dark][data-accent=violet]{--active:#30264e}
+:root[data-accent=teal]{--focus:#138e82;--active:#e1f5f2}
+:root[data-accent=green]{--focus:#16915f;--active:#e5f5eb}
+:root[data-accent=orange]{--focus:#be6218;--active:#fff0df}
+:root[data-accent=red]{--focus:#bf4444;--active:#fcecee}
+:root[data-accent=graphite]{--focus:#545e78;--active:#eceef4}
+:root[data-theme=dark][data-accent]:not([data-accent=violet]):not([data-accent=shockwave]){--active:#2b344d}
+
+/* Keep native selection semantics while styling the picker in supporting browsers. */
+@supports (appearance:base-select) and selector(::picker(select)){
+  :root{--select-appearance:base-select}
+  select:not([multiple])::picker(select){appearance:base-select}
+  select:not([multiple])::picker-icon{display:none}
+  select:not([multiple])::picker(select){
+    margin-block:5px;padding:4px;max-block-size:min(19rem,55dvh);
+    color:var(--text);background:var(--panel);
+    border:1px solid var(--control-border);border-radius:var(--popover-radius);
+    box-shadow:var(--elevation-popover);
+  }
+  select:not([multiple]) option{
+    color:var(--text);background:transparent;padding:8px 10px;gap:8px;border-radius:calc(var(--control-radius) - 2px);
+    font-family:var(--font-body);font-weight:var(--control-weight);
+  }
+  select:not([multiple]) option[hidden]{display:none}
+  select:not([multiple]) option:checked{color:var(--ink);background:var(--active)}
+  select:not([multiple]) option:is(:hover,:focus-visible):not(:disabled){color:var(--ink);background:var(--active)}
+  select:not([multiple]) option:focus-visible{outline:var(--focus-width) solid var(--ring);outline-offset:-2px}
+  select:not([multiple]) option:disabled{opacity:var(--control-disabled-opacity)}
+}
+
+/* Shared by the main shell and the Operasional iframe. */
+:where(button,a,input,select,textarea,summary,[role=separator],[tabindex="0"]):focus-visible{
+  outline:var(--focus-width) solid var(--control-focus-color);
+  outline-offset:var(--focus-offset);
+}
+:root :is(input:not([type=checkbox],[type=radio],[type=hidden],[type=file]),textarea,select,.button,.search-select-trigger,.ctl,.rp-editor):focus-visible,
+:root :is(.password-input,.search-box,.date-control-row,.ops-date-example):focus-within{
+  border-color:var(--control-focus-color);
+  box-shadow:var(--control-focus-shadow);
+  outline:none;
+}
+:root :is(input,textarea,select,.search-select-trigger):is([aria-invalid=true],.rp-input-err):focus-visible,
+:root :is(.password-input,.search-box,.date-control-row,.ops-date-example):focus-within:has([aria-invalid=true],.rp-input-err){
+  --control-focus-color:var(--control-error);
+}
+:root :is(.password-input,.search-box,.date-control-row,.ops-date-example) :is(input,button):focus-visible{
+  outline:none;
+  box-shadow:none;
+}
+:root :is(.password-input,.search-box,.date-control-row,.ops-date-example) input:focus-visible{
+  border-color:transparent;
+}
+:root :is(.password-input,.search-box,.date-control-row) button:focus-visible{
+  background-color:var(--active);
+  color:var(--ink);
+}
+@media (forced-colors:active){
+  :root :is(input:not([type=checkbox],[type=radio],[type=hidden],[type=file]),textarea,select,.button,.search-select-trigger,.ctl,.rp-editor):focus-visible,
+  :root :is(.password-input,.search-box,.date-control-row,.ops-date-example):focus-within{
+    outline:var(--focus-width) solid Highlight;
+    outline-offset:-1px;
+  }
+  :root :is(.password-input,.search-box,.date-control-row) button:focus-visible{
+    color:HighlightText;
+    background:Highlight;
+    forced-color-adjust:none;
+  }
+}

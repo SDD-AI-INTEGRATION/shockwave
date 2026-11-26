@@ -5,13 +5,13 @@ Repositori ini berisi dua sumber Shockwave PMO yang bisa dijalankan secara terpi
 | Folder | Revisi | Isi |
 | --- | --- | --- |
 | [full-stack](full-stack/) | Paket 0.1.0, snapshot 18 November 2026 | Frontend Next.js, backend NestJS, empat migrasi PostgreSQL, adaptor OpenAI, OCR, logo, konfigurasi contoh, Docker, dan panduan operasional |
-| [preview-v34](preview-v34/) | Sites v34, commit `40832d6ffd9cd300d0ea8053a676a65c8a2d85a0` | Frontend React, API service worker, penyimpanan IndexedDB, fitur asisten preview, aset, dan logo |
+| [preview-v61](preview-v61/) | Sites v61, commit `dc66694ca389ea70e9557ca647eb3045b16631b0` | Frontend React, API service worker, penyimpanan IndexedDB, fitur asisten preview, aset, dan logo |
 
 Detail revisi dan sanitasi tercatat di [SOURCE-REVISIONS.json](SOURCE-REVISIONS.json). Versi full-stack berasal dari snapshot folder tanpa riwayat Git yang tersedia. Hash snapshot mengidentifikasi sumber tersebut.
 
-Ekspor ini menerapkan perbaikan keamanan di atas v34. Preview memakai Zod 4.6.7 dan membangun ulang bundel ExcelJS dengan UUID 11.1.1. Jalankan `npm run build` untuk membuat bundel browser dari dependency lockfile.
+Ekspor ini menerapkan perbaikan keamanan di atas v61. Preview memakai Zod 4.6.7 dan membangun ulang bundel ExcelJS dengan UUID 11.1.1. Jalankan `npm run build` untuk membuat bundel browser dari dependency lockfile.
 
-Repositori ini belum memuat konektor SIMPRO aktif. Full-stack mendokumentasikan kebutuhan konektor eksternal. Preview v34 menggunakan input dan impor data proyek setelah sinkronisasi simulasi dihapus.
+Repositori ini belum memuat konektor SIMPRO aktif. Full-stack mendokumentasikan kebutuhan konektor eksternal. Preview v61 menggunakan input dan impor data proyek setelah sinkronisasi simulasi dihapus.
 
 ## Menjalankan full-stack
 
@@ -21,12 +21,12 @@ Ikuti [README full-stack](full-stack/README.md) untuk Docker, bootstrap admin, d
 - [Konfigurasi asisten OpenAI](full-stack/docs/OPENAI.md)
 - [Migrasi PostgreSQL](full-stack/database/)
 
-## Menjalankan preview v34
+## Menjalankan preview v61
 
 Preview memakai akun demo `reviewer@shockwave.test`. Tetapkan password lokal baru sebelum build karena verifier bawaan dikosongkan di ekspor ini. Dari Bash dan dengan Node.js 24 atau lebih baru, jalankan berikut setelah mengekstrak ZIP.
 
 ```bash
-cd preview-v34
+cd preview-v61
 read -r -s -p 'Password demo baru: ' preview_password
 printf '\n'
 printf '%s' "$preview_password" | node --input-type=module -e '
@@ -48,6 +48,6 @@ npm run build
 python3 -m http.server 4173 --bind 127.0.0.1 --directory dist
 ```
 
-Buka `http://localhost:4173`. Gunakan origin baru untuk pengujian bersih karena preview menyimpan sesi dan data di IndexedDB per origin. Untuk deployment preview, sajikan isi `dist/` dari root origin HTTPS, termasuk `review-api.js` dan `fase-1/operations.html`. Isi `YOUR_SITES_PROJECT_ID` di [konfigurasi Sites](preview-v34/.openai/hosting.json) bila menggunakan Sites. Simpan akses preview pada audiens peninjau dan gunakan data dummy.
+Buka `http://localhost:4173`. Gunakan origin baru untuk pengujian bersih karena preview menyimpan sesi dan data di IndexedDB per origin. Untuk deployment preview, sajikan isi `dist/` dari root origin HTTPS, termasuk `review-api.js` dan `fase-1/operations.html`. Isi `YOUR_SITES_PROJECT_ID` di [konfigurasi Sites](preview-v61/.openai/hosting.json) bila menggunakan Sites. Simpan akses preview pada audiens peninjau dan gunakan data dummy.
 
-[Dokumentasi autentikasi preview](preview-v34/docs/login-preview.md) menjelaskan dukungan email, Google Sign-In, dan passkey.
+[Dokumentasi autentikasi preview](preview-v61/docs/login-preview.md) menjelaskan dukungan email, Google Sign-In, dan passkey.

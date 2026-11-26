@@ -1,10 +1,10 @@
 {
-  "preview-v34": {
+  "preview-v61": {
     "source": "Shockwave PMO Sites Git repository, main",
-    "release": 34,
-    "commit": "40832d6ffd9cd300d0ea8053a676a65c8a2d85a0",
-    "committed_at": "2026-11-24T10:16:43+07:00",
-    "files": 69,
+    "release": 61,
+    "commit": "dc66694ca389ea70e9557ca647eb3045b16631b0",
+    "committed_at": "2026-11-26T16:15:01+07:00",
+    "files": 117,
     "export_sanitization": [
       "packages/shared/review.json: cleared bundled demo reviewer password verifier",
       ".openai/hosting.json: replaced project identifier with a configuration placeholder",
@@ -13,6 +13,11 @@
     "security_patches": [
       "Upgrade Zod to 4.6.7 for GHSA-mrhx-c7xc-m3w5",
       "Override ExcelJS UUID to 11.1.1 for GHSA-w5hq-g745-h8pq and build browser bundles from audited dependencies"
+    ],
+    "review_fixes": [
+      "Validate session logo WebP headers and cap branding request size before parsing",
+      "Reject invalid Risk Register rows and duplicate risk IDs before storing",
+      "Ignore invalid operation-frame message formats"
     ]
   },
   "full-stack": {
