@@ -1,9 +1,9 @@
 {
   "workspace-app": {
     "source": "Shockwave PMO Sites Git repository, main",
-    "release": 71,
-    "commit": "dc462a8d9cf856d278c6bcf95841f4c3533c9481",
-    "committed_at": "2026-11-27T11:39:10+07:00",
+    "release": 78,
+    "commit": "15c105b7d155c73252b2d7d8da5de9bb238cbeff",
+    "committed_at": "2026-11-27T14:42:09+07:00",
     "files": 126,
     "export_sanitization": [
       "packages/shared/review.json: cleared bundled demo reviewer password verifier",

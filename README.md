@@ -96,4 +96,4 @@ Untuk hosting, sajikan isi `dist/` dari root origin HTTPS, termasuk `review-api.
 
 ## Revisi sumber
 
-Paket self-hosted mengacu pada snapshot 18 November 2026, versi `0.1.0`. Aplikasi workspace mengacu pada Sites v71 (`dc462a8`) dan menyertakan pembaruan Zod 4.6.7 serta bundel ExcelJS dengan UUID 11.1.1. Revisi lengkap, hash snapshot, dan catatan sanitasi tersedia di [SOURCE-REVISIONS.json](SOURCE-REVISIONS.json).
+Paket self-hosted mengacu pada snapshot 18 November 2026, versi `0.1.0`. Aplikasi workspace mengacu pada Sites v78 (`15c105b`) dan menyertakan pembaruan Zod 4.6.7 serta bundel ExcelJS dengan UUID 11.1.1. Revisi lengkap, hash snapshot, dan catatan sanitasi tersedia di [SOURCE-REVISIONS.json](SOURCE-REVISIONS.json).

@@ -4,7 +4,7 @@ import { ActionMenu } from './action-menu';
 import { FormatIcon } from './download-menu';
 import { FormField, TextInput, Textarea, Select } from './form-controls';
 import { Camera, FileUp, FilePlus2, FileText, FolderOpen, ImagePlus, Plus, RotateCcw, Save } from 'lucide-react';
-import { useEffect, useRef, useState, type PointerEvent } from 'react';
+import { useEffect, useLayoutEffect, useRef, useState, type PointerEvent } from 'react';
 import { pillarOptions, resolvePillar, type ProjectRow } from '../../../packages/shared/domain';
 import type { MomFollowup as Follow } from '../../../packages/shared/mom-sample';
 import { ApiError, Button, api, ConfirmDialog, dateLabel, Dialog, Empty, ErrorBox, Heading, Pill, type User } from './ui';
@@ -671,9 +671,12 @@ export function Operations({projects,user,notify}: {projects:ProjectRow[];user:U
     {error&&<ErrorBox message={error}/>}
     {tab!=='report'&&<div className="heading-actions ops-tools wbs-toolbar">
       {tab==='main'&&writable&&own(project)&&<>
-        <label className="field wbs-template-picker">Pilar templat<Select value={template} onChange={e=>setTemplate(e.target.value)} disabled={!editorReady}>
-          {pillarOptions.map(option=><option key={option.id} value={option.operationsTemplate}>{option.label}</option>)}
-        </Select></label>
+        <div className="field wbs-template-picker">
+          <label htmlFor="ops-template-pillar">Pilar templat</label>
+          <SearchableSelect id="ops-template-pillar" label="Pilar templat" emptyLabel="Pilih pilar" value={template}
+            options={pillarOptions.map(option=>({id:option.operationsTemplate,label:option.label}))}
+            onChange={setTemplate} disabled={!editorReady} required searchable={false}/>
+        </div>
         <Button className="button" disabled={!editorReady} onClick={()=>setConfirmTemplate('apply')}>
           {template==='application'?<><NavIcon name="sample"/> Muat contoh</>:'Terapkan templat'}
         </Button>
@@ -733,36 +736,58 @@ export function Operations({projects,user,notify}: {projects:ProjectRow[];user:U
 
 function Curve({metrics,select}:{metrics:Metrics;select:(week:number)=>void}){
   const [visible,setVisible]=useState({plan:true,actual:true,spi:false});
+  const chart=useRef<HTMLDivElement>(null);
+  const [availableWidth,setAvailableWidth]=useState(0);
   const {dates,plan,actual,week}=metrics;
-  const plotWidth=Math.max(550,Math.max(1,dates.length-1)*55);
-  const width=plotWidth+88;
-  const x=(i:number)=>44+plotWidth*i/Math.max(1,dates.length-1);
-  const y=(value:number)=>220-Math.min(125,value)*1.44;
+  const padding=44;
+  const intervals=Math.max(1,dates.length-1);
+  const width=Math.max(availableWidth,2*padding+intervals*48);
+  const height=Math.max(228,Math.min(320,Math.round(availableWidth*.28)));
+  const top=32,bottom=height-32;
+  const x=(i:number)=>padding+(width-2*padding)*i/intervals;
+  const y=(value:number)=>bottom-Math.min(125,value)*(bottom-top)/125;
+  const selectedX=x(week);
+  useLayoutEffect(()=>{
+    const panel=chart.current;
+    if(!panel)return;
+    const measure=()=>setAvailableWidth(panel.clientWidth);
+    const observer=new ResizeObserver(measure);
+    measure();
+    observer.observe(panel);
+    return ()=>observer.disconnect();
+  },[]);
+  useLayoutEffect(()=>{
+    const panel=chart.current;
+    if(!panel||!availableWidth)return;
+    if(selectedX-padding<panel.scrollLeft||selectedX+padding>panel.scrollLeft+availableWidth){
+      panel.scrollLeft=selectedX-availableWidth/2;
+    }
+  },[selectedX,availableWidth,padding]);
   const series=[
-    {key:'plan',name:'Rencana',values:plan,color:'#2656df',offset:-10},
-    {key:'actual',name:'Aktual',values:actual,color:'#138e82',offset:15},
-    {key:'spi',name:'Schedule Index',values:actual.map((value,i)=>plan[i]?value/plan[i]*100:0),color:'#bd741e',offset:-25},
+    {key:'plan',name:'Rencana',values:plan,color:'var(--curve-plan)',offset:-9},
+    {key:'actual',name:'Aktual',values:actual,color:'var(--curve-actual)',offset:15},
+    {key:'spi',name:'Schedule Index',values:actual.map((value,i)=>plan[i]?value/plan[i]*100:0),color:'var(--curve-spi)',offset:-23},
   ] as const;
   const spi=plan[week]?actual[week]/plan[week]:0;
   const status=!plan[week]?'Rencana belum diatur':spi<.9?'Terlambat':spi>1.05?'Lebih cepat':'Sesuai jadwal';
   return <section className="panel padded curve">
-    <div className="split"><h2>Kurva S</h2><Select aria-label="Minggu Kurva S" value={week} onChange={e=>select(+e.target.value)}>{dates.map((date,i)=><option value={i} key={i}>W{i} · {date}</option>)}</Select></div>
-    <div className="heading-actions space-top">
+    <div className="split curve-header"><h2>Kurva S</h2><Select aria-label="Minggu Kurva S" value={week} onChange={e=>select(+e.target.value)}>{dates.map((date,i)=><option value={i} key={i}>W{i} · {date}</option>)}</Select></div>
+    <div className="heading-actions curve-legend space-top">
       {series.map(({key,name,color})=><button key={key} aria-pressed={visible[key]} onClick={()=>setVisible({...visible,[key]:!visible[key]})} className={'chip '+(visible[key]?'filter-selected':'')} style={{borderColor:visible[key]?color:undefined}}>{name}</button>)}
     </div>
     <div className="curve-grid">
-      <div className="curve-scroll" role="region" aria-label="Grafik Kurva S" tabIndex={0}>
-        <svg viewBox={'0 0 '+width+' 253'} style={{minWidth:width}} role="group" aria-label={'Kurva S, minggu '+week}>
-          {[0,25,50,75,100,125].map(value=><g key={value}><line x1="44" y1={y(value)} x2={width-44} y2={y(value)} stroke="var(--line)"/><text x="4" y={y(value)+4}>{value}%</text></g>)}
-          <line x1={x(week)} y1="26" x2={x(week)} y2="220" stroke="var(--accent)" opacity=".6"/>
+      <div ref={chart} className="curve-scroll" role="region" aria-label="Grafik Kurva S" tabIndex={0}>
+        <svg width={width} height={height} role="group" aria-label={'Kurva S, minggu '+week}>
+          {[0,25,50,75,100,125].map(value=><g key={value}><line x1={padding} y1={y(value)} x2={width-padding} y2={y(value)} stroke="var(--line)"/><text x="4" y={y(value)+4}>{value}%</text></g>)}
+          <line x1={selectedX} y1={top-5} x2={selectedX} y2={bottom} stroke="var(--accent)" opacity=".6"/>
           {series.filter(item=>visible[item.key]).map(({key,name,values,color})=><g key={key}>
-            <polyline fill="none" stroke={color} strokeWidth="2.5" points={values.map((value,i)=>x(i)+','+y(value)).join(' ')}/>
+            <polyline className="curve-series-line" fill="none" stroke={color} points={values.map((value,i)=>x(i)+','+y(value)).join(' ')}/>
             {values.map((value,i)=><circle key={i} className="chart-point" cx={x(i)} cy={y(value)} r={i===week?4.5:3.2} fill={color} stroke="var(--panel)" strokeWidth="1" tabIndex={0} role="button" aria-label={'Minggu '+i+' '+name+' '+value+' persen'} onClick={()=>select(i)} onKeyDown={e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();select(i)}}}><title>{name+' W'+i+' · '+value.toFixed(1)+'%'}</title></circle>)}
           </g>)}
           {series.filter(item=>visible[item.key]).map(({key,values,color,offset})=><g key={key} aria-hidden="true">
             {values.map((value,i)=><text key={i} className="chart-point-value" x={x(i)} y={y(value)+offset} textAnchor="middle" style={{fill:color,fontWeight:i===week?850:650}}>{Number(value.toFixed(1))}%</text>)}
           </g>)}
-          {dates.map((_,i)=><text className="chart-week" onClick={()=>select(i)} key={i} x={x(i)} y="246" textAnchor="middle">W{i}</text>)}
+          {dates.map((_,i)=><text className="chart-week" onClick={()=>select(i)} key={i} x={x(i)} y={height-8} textAnchor="middle">W{i}</text>)}
         </svg>
       </div>
       <div className="curve-kpis"><Pill tone={!plan[week]?'amber':spi<.9?'red':'green'}>{status}</Pill><dl className="detail-grid"><div><dt>Rencana</dt><dd>{plan[week]}%</dd></div><div><dt>Aktual</dt><dd>{actual[week]}%</dd></div><div><dt>SPI</dt><dd>{plan[week]?spi.toFixed(3):'—'}</dd></div><div><dt>Kenaikan</dt><dd>{((actual[week]||0)-(actual[week-1]||0)).toFixed(2)} poin</dd></div></dl></div>
