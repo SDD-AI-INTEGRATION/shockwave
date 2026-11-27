@@ -1,10 +1,10 @@
 {
-  "preview-v61": {
+  "preview-v71": {
     "source": "Shockwave PMO Sites Git repository, main",
-    "release": 61,
-    "commit": "dc66694ca389ea70e9557ca647eb3045b16631b0",
-    "committed_at": "2026-11-26T16:15:01+07:00",
-    "files": 117,
+    "release": 71,
+    "commit": "dc462a8d9cf856d278c6bcf95841f4c3533c9481",
+    "committed_at": "2026-11-27T11:39:10+07:00",
+    "files": 126,
     "export_sanitization": [
       "packages/shared/review.json: cleared bundled demo reviewer password verifier",
       ".openai/hosting.json: replaced project identifier with a configuration placeholder",
