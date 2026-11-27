@@ -17,8 +17,8 @@
 ## Yang bisa dikelola
 
 - **Portofolio proyek** — master proyek, pilar, progres, serta impor dan ekspor Excel.
-- **Operasional PMO** — WBS, linimasa, laporan mingguan, dan Log Book pada preview.
-- **Rapat dan dokumen** — Rapat Korporat, Penunjukan PM, Daftar Risiko, Notulen, serta templat BAST dan Lesson Learned pada preview.
+- **Operasional PMO** — WBS, linimasa, laporan mingguan, dan Log Book di aplikasi workspace.
+- **Rapat dan dokumen** — Rapat Korporat, Penunjukan PM, Daftar Risiko, Notulen, serta templat BAST dan Lesson Learned di aplikasi workspace.
 - **Tata kelola full-stack** — persetujuan, tindak lanjut, termin, pengelolaan dokumen dengan OCR, dan asisten PMO dengan integrasi OpenAI opsional.
 
 ## Isi repositori
@@ -26,9 +26,9 @@
 | Paket | Digunakan untuk | Stack |
 | --- | --- | --- |
 | [**Full-stack 0.1.0**](full-stack/) | Menjalankan aplikasi dengan API, database persisten, dan worker OCR. | Next.js, NestJS, PostgreSQL, Python, Docker Compose |
-| [**Preview v71**](preview-v71/) | Meninjau UI/UX dan alur kerja dengan data dummy. Sesi dan data tersimpan di browser per origin. | React, Vite, Service Worker, IndexedDB |
+| [**Aplikasi Shockwave**](app/) | Meninjau UI/UX dan alur kerja dengan data dummy. Sesi dan data tersimpan di browser per origin. | React, Vite, Service Worker, IndexedDB |
 
-Preview menggunakan input manual dan impor Excel untuk proyek. Konektor SIMPRO aktif masih memerlukan integrasi.
+Aplikasi workspace menggunakan input manual dan impor Excel untuk proyek. Konektor SIMPRO aktif masih memerlukan integrasi.
 
 ## Mulai cepat
 
@@ -43,16 +43,16 @@ cd full-stack
 
 Buka [http://localhost:8080](http://localhost:8080). Pada penggunaan berikutnya, jalankan launcher tanpa `-CreateAdmin`. Panduan pengembangan dengan Node.js 26 ada di [README full-stack](full-stack/README.md). Untuk konfigurasi manual, gunakan templat [root](full-stack/.env.example), [backend](full-stack/backend/.env.example), dan [deployment](full-stack/deploy/production.env.example) sebagai acuan.
 
-### Preview v71 di browser
+### Aplikasi Shockwave di browser
 
 Gunakan Bash, Node.js 24 atau lebih baru, dan Python 3. Akun demo memakai email `reviewer@shockwave.test`. Siapkan kata sandi lokal sebelum build.
 
 <details>
-<summary>Siapkan kata sandi demo dan jalankan preview</summary>
+<summary>Siapkan kata sandi demo dan jalankan aplikasi</summary>
 
 ```bash
 (
-  cd preview-v71 || exit 1
+  cd app || exit 1
   read -r -s -p 'Kata sandi demo baru (minimal 12 karakter): ' preview_password
   printf '\n'
   printf '%s' "$preview_password" | node --input-type=module -e '
@@ -78,7 +78,7 @@ Gunakan Bash, Node.js 24 atau lebih baru, dan Python 3. Akun demo memakai email 
 
 Buka [http://localhost:4173](http://localhost:4173) dan masuk dengan akun demo. Gunakan data dummy dan simpan perubahan kata sandi hanya pada salinan lokal. Untuk pengujian dengan state bersih, gunakan origin baru.
 
-Untuk hosting, sajikan isi `dist/` dari root origin HTTPS, termasuk `review-api.js` dan `fase-1/operations.html`. Isi `YOUR_SITES_PROJECT_ID` di [konfigurasi Sites](preview-v71/.openai/hosting.json) jika memakai Sites, dan batasi akses ke audiens peninjau.
+Untuk hosting, sajikan isi `dist/` dari root origin HTTPS, termasuk `review-api.js` dan `fase-1/operations.html`. Isi `YOUR_SITES_PROJECT_ID` di [konfigurasi Sites](app/.openai/hosting.json) jika memakai Sites, dan batasi akses ke audiens peninjau.
 
 </details>
 
@@ -89,9 +89,9 @@ Untuk hosting, sajikan isi `dist/` dari root origin HTTPS, termasuk `review-api.
 | Deployment, backup, dan restore | [Operasi full-stack](full-stack/docs/OPERATIONS.md) |
 | Asisten PMO | [Konfigurasi OpenAI](full-stack/docs/OPENAI.md) |
 | Basis data | [Migrasi PostgreSQL](full-stack/database/) |
-| Review UI dan akses | [Sistem visual](preview-v71/docs/visual-system.md) · [Autentikasi preview](preview-v71/docs/login-preview.md) |
-| Impor Proyek | [Templat dan validasi Excel](preview-v71/docs/project-module.md) |
+| Review UI dan akses | [Sistem visual](app/docs/visual-system.md) · [Autentikasi aplikasi](app/docs/login-preview.md) |
+| Impor Proyek | [Templat dan validasi Excel](app/docs/project-module.md) |
 
 ## Revisi sumber
 
-Snapshot full-stack berasal dari 18 November 2026. Preview mengacu pada Sites v71 (`dc462a8`) dan menyertakan pembaruan Zod 4.6.7 serta bundel ExcelJS dengan UUID 11.1.1. Revisi lengkap, hash snapshot, dan catatan sanitasi tersedia di [SOURCE-REVISIONS.json](SOURCE-REVISIONS.json).
+Snapshot full-stack berasal dari 18 November 2026. Aplikasi workspace mengacu pada Sites v71 (`dc462a8`) dan menyertakan pembaruan Zod 4.6.7 serta bundel ExcelJS dengan UUID 11.1.1. Revisi lengkap, hash snapshot, dan catatan sanitasi tersedia di [SOURCE-REVISIONS.json](SOURCE-REVISIONS.json).
