@@ -122,6 +122,15 @@ export function DateInput({label,value,onValue,onInvalidDraft,name,readOnly,disa
             onClick={()=>{setTyped(undefined);onInvalidDraft?.(false);onValue(day);close();focusTrigger()}}>{index+1}</button>;
         })}
       </div>
+      <div className="date-calendar-footer">
+        <button type="button" className="button" disabled={!monthAvailable(+today.slice(0,4),+today.slice(5,7)-1)}
+          onClick={()=>{
+            const target=today<earliest?earliest:today>latest?latest:today;
+            focusDay.current=true;
+            setActive(target);
+            setMonth(monthOf(today));
+          }}>Hari ini</button>
+      </div>
     </FloatingPopover>}
   </div>;
 }

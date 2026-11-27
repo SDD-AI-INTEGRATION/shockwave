@@ -1,4 +1,4 @@
-import { LockKeyhole } from 'lucide-react';
+import { LockKeyhole, X } from 'lucide-react';
 import { forwardRef, useId, useImperativeHandle, useLayoutEffect, useRef, useState, type ComponentPropsWithoutRef, type CSSProperties, type ReactNode } from 'react';
 
 export const TextInput=forwardRef<HTMLInputElement,ComponentPropsWithoutRef<'input'>>(
@@ -61,6 +61,12 @@ export const Textarea=forwardRef<HTMLTextAreaElement,TextareaProps>(
   },
 );
 
+export function SelectClear({label,onClear}:{label:string;onClear:()=>void}){
+  return <button type="button" className="icon-button select-clear" aria-label={label} title={label} onClick={onClear}>
+    <X size={16} aria-hidden="true"/>
+  </button>;
+}
+
 type SelectProps=ComponentPropsWithoutRef<'select'>&{placeholder?:string;clearLabel?:string};
 export function Select({placeholder,clearLabel,value,defaultValue,onChange,children,...props}:SelectProps){
   const [uncontrolled,setUncontrolled]=useState(defaultValue??'');
@@ -74,14 +80,14 @@ export function Select({placeholder,clearLabel,value,defaultValue,onChange,child
       <option value="" disabled hidden>{placeholder}</option>
       {children}
     </select>
-    {clearLabel&&!empty&&!props.disabled&&!props.required&&props['aria-required']!==true&&
-      <button type="button" className="icon-button select-clear" aria-label={clearLabel} title={clearLabel} onClick={()=>{
+    {clearLabel&&!empty&&!props.disabled&&!props.required&&String(props['aria-required'])!=='true'&&
+      <SelectClear label={clearLabel} onClear={()=>{
         const field=select.current;
         if(!field||field.matches(':disabled'))return;
         field.value='';
         field.dispatchEvent(new Event('change',{bubbles:true}));
         field.focus();
-      }}>×</button>}
+      }}/>}
   </span>;
 }
 

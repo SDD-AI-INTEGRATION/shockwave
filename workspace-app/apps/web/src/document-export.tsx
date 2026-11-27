@@ -167,6 +167,24 @@ async function excelDocument(source:Block[], name:string){
   downloadFile(new Blob([new Uint8Array(buffer)],{type:'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'}),name+'.xlsx');
 }
 
+function captureStyles(){
+  const nodes=new Set<Node>();
+  const styles:{media:string;css:string}[]=[];
+  for(const sheet of document.styleSheets){
+    if(!sheet.ownerNode)continue;
+    if(sheet.disabled){
+      nodes.add(sheet.ownerNode);
+      continue;
+    }
+    // Reuse the loaded CSS. html2canvas otherwise reloads linked styles in its
+    // iframe and can render an unstyled page when that request fails.
+    const css=Array.from(sheet.cssRules,rule=>rule.cssText).join('\n');
+    nodes.add(sheet.ownerNode);
+    styles.push({media:sheet.media.mediaText,css});
+  }
+  return {nodes,styles};
+}
+
 export async function buildDocumentPdf(element:HTMLElement,name:string){
   const [{default:html2canvas},{jsPDF}]=await Promise.all([import('html2canvas'),import('jspdf')]);
   const host=document.createElement('div');
@@ -181,6 +199,10 @@ export async function buildDocumentPdf(element:HTMLElement,name:string){
   try{
     await Promise.all([document.fonts.ready,...Array.from(copy.querySelectorAll('img'),image=>image.decode().catch(()=>{}))]);
     const bounds=copy.getBoundingClientRect();
+    const {nodes:stylesheetNodes,styles}=captureStyles();
+    const windowWidth=window.innerWidth;
+    const windowHeight=window.innerHeight;
+    const font=getComputedStyle(copy).fontFamily;
     const width=Math.ceil(bounds.width);
     const height=Math.ceil(bounds.height);
     const pdf=new jsPDF({unit:'mm',format:'a4',compress:true});
@@ -222,6 +244,29 @@ export async function buildDocumentPdf(element:HTMLElement,name:string){
     const headers=new Map<number,HTMLCanvasElement>();
     const capture=(start:number,length:number)=>html2canvas(copy,{
       backgroundColor:'#ffffff',scale:rasterScale,y:start,width,height:length,logging:false,
+      windowWidth,windowHeight,
+      ignoreElements:node=>stylesheetNodes.has(node)||(node.parentElement===document.body&&node!==host),
+      async onclone(clone,clonedPaper){
+        try{
+          for(const {css,media} of styles){
+            const style=clone.createElement('style');
+            style.media=media;
+            style.textContent=css;
+            clone.head.append(style);
+          }
+          const measured=clonedPaper.getBoundingClientRect();
+          const frame=clone.defaultView;
+          await clone.fonts.ready;
+          const loaded=clonedPaper.getBoundingClientRect();
+          if(!frame||Math.abs(measured.width-bounds.width)>2||Math.abs(loaded.height-bounds.height)>3||
+            frame.getComputedStyle(clonedPaper).fontFamily!==font){
+            throw new Error('Tata letak dokumen tidak siap dirender.');
+          }
+        }catch(error){
+          clone.defaultView?.frameElement?.remove();
+          throw error;
+        }
+      },
     });
     async function renderSlice(start:number,length:number,y:number,isHeader=false){
       let canvas=isHeader?headers.get(start):undefined;
