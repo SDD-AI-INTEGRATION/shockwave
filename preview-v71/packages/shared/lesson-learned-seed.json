@@ -1,0 +1,27 @@
+{
+  "Project Planning": [
+    "Tujuan bisnis jelas, terukur, dapat dicapai, fokus pada hasil dan mempunyai batasan waktu.",
+    "Project plan dan jadual terdokumentasi dengan baik, dengan susunan yang tepat dan terperinci.",
+    "Requirements terdata dengan lengkap dan terperinci.",
+    "Test Plan lengkap, mudah dimengerti dan terdokumentasi dengan baik.",
+    "Kriteria penyelesaian setiap tahap jelas untuk seluruh tahapan proyek"
+  ],
+  "Project Execution and Delivery": [
+    "Project baselines (ruang lingkup, waktu, biaya dan kualitas) dikelola dengan baik",
+    "Proses-proses pokok manajemen proyek telah dilakukan.",
+    "Stakeholders puas dengan informasi yang diterima",
+    "Proyek memiliki Quality Control yang baik & mencukupi."
+  ],
+  "Human Factors": [
+    "Tim proyek bekerja secara efektif dengan melihat tujuan proyek",
+    "Komunikasi dalam tim proyek terjalin dengan baik.",
+    "Manajemen memberikan perhatian dan waktu yang cukup pada proyek",
+    "Area-area / departemen fungsional dapat bekerjasama dengan baik"
+  ],
+  "Overall": [
+    "Biaya awal dan estimasi jadual akurat",
+    "Produk di-deliverd dengan jadual dan budget yang berkembang",
+    "Kebutuhan pelanggan dapat terpenuhi",
+    "Tujuan proyek tercapai"
+  ]
+}
